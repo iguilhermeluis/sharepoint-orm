@@ -25,12 +25,8 @@ export class User implements IUser {
     }
 
     const { clientConfig } = this.client
-    const { data: token } = await this.client.request(
-      'API',
-      'GET',
-      `/api/token/GenerateTokenSP/${clientConfig.application}/${clientConfig.environment}/${clientConfig.tokenApi}`
-    )
-    return Builder.authorization(`Bearer ${token.toString()}`)
+    const { data: access_token } = await this.client.request('API', 'POST', ``)
+    return Builder.authorization(`Bearer ${access_token.toString()}`)
   }
 
   async refreshToken(): Promise<string> {
