@@ -29,6 +29,13 @@ export class User implements IUser {
     return Builder.authorization(`Bearer ${access_token.toString()}`)
   }
 
+  async authorizeWithToken(access_token?: string): Promise<string> {
+    if (access_token) {
+      return Builder.authorization(`Bearer ${access_token.toString()}`)
+    }
+    return Builder.authorization(``)
+  }
+
   async refreshToken(): Promise<string> {
     const {
       data: { FormDigestValue: token },
